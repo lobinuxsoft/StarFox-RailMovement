@@ -16,6 +16,8 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Parameters")]
     public float xySpeed = 18;
+
+    public float maxLookInclination = .25f;
     public float lookSpeed = 340;
     public float forwardSpeed = 6;
 
@@ -46,7 +48,7 @@ public class PlayerMovement : MonoBehaviour
         float v = joystick ? Input.GetAxis("Vertical") : Input.GetAxis("Mouse Y");
 
         LocalMove(h, v, xySpeed);
-        RotationLook(h,v, lookSpeed);
+        RotationLook(h * maxLookInclination, v * maxLookInclination, lookSpeed);
         HorizontalLean(playerModel, h, 80, .1f);
 
         if (Input.GetButtonDown("Action"))
